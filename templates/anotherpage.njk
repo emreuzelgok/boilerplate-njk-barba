@@ -1,0 +1,15 @@
+{% set site_class = "page-another" %}
+{% set namespace = "anotherpage" %}
+{% set page = "anotherpage.html" %}
+{% extends "templates/_layout.njk" %}
+
+{% block content %}
+
+    <main class="{{ site_class }}" data-barba="container" data-barba-namespace="page" >
+        <div class="starter-template">
+         <h1>This is another page</h1>
+        </div>
+    </main>
+
+</main>
+{% endblock %}
