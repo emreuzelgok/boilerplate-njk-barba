@@ -1,0 +1,198 @@
+@mixin heading-regular {
+    font-family: 'Akzidenz-Grotesk BQ',
+      Arial,
+      sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+  @mixin heading-medium {
+    font-family: 'StandardCT-MediumExtd',
+    Arial,
+    sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  @mixin heading-bold {
+    font-family: 'Akzidenz-Grotesk BQ',
+      Arial,
+      sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  @mixin fsize-xs {
+    font-size: 1rem;
+    @include respond(tab-large) {
+      font-size: 0.75rem;
+    }
+  }
+  @mixin fsize-s {
+   font-size: 1.15rem;
+   @include respond(tab-large) {
+     font-size: 0.95rem;
+   }
+  }
+  @mixin fsize-m {
+     font-size: 1.2rem;
+     @include respond(tab-large) {
+       font-size: 1.05rem;
+     }
+  }
+  @mixin fsize-l {
+       font-size: 1.3rem;
+  
+       @include respond(tab-large) {
+         font-size: 1.25rem;
+       }
+  }
+  
+  
+  // 2.0 – Media Queries
+  @mixin respond($breakpoint) {
+    @if $breakpoint==phone-medium {
+      @media only screen and (min-width: 23.4em) {
+        @content
+      }
+  
+      ;
+    }
+  
+    @if $breakpoint==phone-large {
+      @media only screen and (min-width: 25.625em) {
+        @content
+      }
+  
+      ;
+    }
+  
+    @if $breakpoint==tab {
+      @media only screen and (min-width: 37.5em) {
+        @content
+      }
+  
+      ;
+    }
+  
+    @if $breakpoint==tab-large {
+      @media only screen and (min-width: 56.25em) {
+        @content
+      }
+  
+      ;
+    }
+  
+    @if $breakpoint==desktop {
+      @media only screen and (min-width: 75em) {
+        @content
+      }
+  
+      ;
+    }
+  
+    @if $breakpoint==desktop-large {
+      @media only screen and (min-width: 112.5em) {
+        @content
+      }
+  
+      ;
+    }
+  
+    @if $breakpoint==desktop-xlarge {
+      @media only screen and (min-width: 137.5em) {
+        @content
+      }
+  
+      ;
+    }
+  }
+  
+  @mixin max-width($breakpoint) {
+    @if $breakpoint==tab {
+      @media only screen and (max-width: 37.5em) {
+        @content
+      }
+  
+      ;
+    }
+  
+    @if $breakpoint==tab-large {
+      @media only screen and (max-width: 56.25em) {
+        @content
+      }
+  
+      ;
+    }
+  
+    @if $breakpoint==desktop {
+      @media only screen and (max-width: 75em) {
+        @content
+      }
+  
+      ;
+    }
+  }
+  
+  @mixin aspect-ratio($arglist...
+  
+    /*$ratio or $width, $height*/
+  ) {
+    $map: keywords($arglist);
+    $height: map-get($map, height) or nth-value($arglist, 2);
+    $width: map-get($map, width) or nth-value($arglist, 1);
+    $ratio: map-get($map, ratio) or if($width and $height, $width/$height, nth-value($arglist, 1)) or 1;
+    $padding: 1/$ratio * 100%;
+  
+    &::before,
+    &::after {
+      content: '';
+      display: table;
+      clear: both;
+      width: 1px;
+      margin-left: -1px;
+    }
+  
+    &::before {
+      float: left;
+      padding-bottom: $padding;
+    }
+  }
+  
+  // Helper function 
+  // Return null rather than throwing an error if index is outside list range.    
+  @function nth-value($list, $index) {
+    @return if(length($list) >=$index, nth($list, $index), null);
+  }
+  
+  @mixin clearfix() {
+  
+    &:before,
+    &:after {
+      content: "";
+      display: table;
+    }
+  
+    &:after {
+      clear: both;
+    }
+  }
+  
+  
+  @mixin reset-button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    cursor: pointer;
+  }
+  
+  @mixin absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }

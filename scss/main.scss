@@ -1,18 +1,12 @@
-// @import "styles/app/abstracts/mixins";
+@import "./helpers/mixins";
+@import "./helpers/reset";
+@import "./helpers/utils";
 
-// @import "styles/app/base/animations";
-// @import "styles/app/base/animations";
-// @import "styles/app/base/base";
-// @import "styles/app/base/typography";
-// @import "styles/app/base/utilities";
+@import "./base/typography";
+@import "./base/animation";
+@import "./base/critical";
 
-// @import "styles/app/layout/navigation";
-// @import "styles/app/layout/footer";
+@import "./components/footer";
+@import "./components/header";
 
-// @import "styles/app/components/hello";
-
-// @import "styles/app/pages/index";
-
-body {
-    background-color: rgb(199, 199, 199);
-}
+@import "./pages/index";

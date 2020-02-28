@@ -1,0 +1,72 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*:focus {
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  // Browser default is 16px
+  font-size: 62.5%; // 62.5% of default value, 10px (= 1 rem)
+  @include respond(tab) {
+    font-size: 75%
+  }
+  @include respond(tab-large) {
+    font-size: 80%
+  }
+  @include respond(desktop) {
+    font-size: 90%
+  }
+  @include respond(desktop-large) {
+    font-size: 110%
+  }
+  @include respond(desktop-xlarge) {
+    font-size: 130%
+  }
+}
+
+:root {
+    --global-pad: 5vw;
+    --header-height: 6rem;
+    --footer-height: 2.5rem;
+    --wrapper-width: 65rem;
+
+    @include respond(tab-large) {
+      --global-pad: 1.5vw;
+    }
+}
+
+body {
+  font-family: "Helvetica", Arial, sans-serif;
+  line-height: 160%;
+}
+
+html,
+body {
+  position: relative;
+  width: 100%;
+  overflow-x : hidden;
+}
+
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  padding: var(--global-pad);
+  margin: auto;
+}
+
+::selection {
+  background-color: #afafaf91;
+  color: rgb(43, 43, 43);
+}
