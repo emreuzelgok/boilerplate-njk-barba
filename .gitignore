@@ -1,4 +1,11 @@
+# Local Netlify folder
 node_modules/
-.idea/
-*.iml
+
+#Build
 dist/
+
+# Local Netlify folder
+.netlify
+
+# Secrets
+.env
