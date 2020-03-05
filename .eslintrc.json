@@ -25,5 +25,19 @@
             "never"
         ],
         "linebreak-style": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "alias": [
+                [
+                    "~",
+                    "./scripts/"
+                ],
+                [
+                    "@",
+                    "./"
+                ]
+            ]
+        }
     }
 }

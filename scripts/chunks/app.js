@@ -1,8 +1,7 @@
-import fade from './transitions/fade'
+// import fade from '~/utils/transitions'
+import fade from '../utils/transitions'
 
-const {
-  barba,
-} = window
+const { barba } = window
 
 const chunkLoad = (chunkName) => new Promise((resolve, reject) => {
   const script = document.createElement('script')
@@ -25,22 +24,26 @@ const injectJS = (element) => {
   return true
 }
 
-injectJS(document.querySelector('main'))
+const onLoad = () => {
+  injectJS(document.querySelector('main'))
+}
 
-barba.init({
-  debug: true,
-  transitions: [{
-    sync: false,
-    leave: ({
-      current,
-    }) => fade.out(current.container),
-    enter: ({
-      next,
-    }) => fade.in(next.container),
-    after: ({
-      next,
-    }) => injectJS(next.container),
-  },
-
-  ],
+document.addEventListener('DOMContentLoaded', () => {
+  onLoad()
+  barba.init({
+    debug: true,
+    transitions: [{
+      sync: false,
+      leave: ({
+        current,
+      }) => fade.out(current.container),
+      enter: ({
+        next,
+      }) => fade.in(next.container),
+      after: ({
+        next,
+      }) => injectJS(next.container),
+    },
+    ],
+  })
 })

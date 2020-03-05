@@ -27,11 +27,10 @@ module.exports = (env) => {
 
     // Can I automate chunks output?
     entry: {
-      app: './scripts/app.js',
       style: './style.scss',
-      vendor: './scripts/vendor.js',
-      home: './scripts/home.js',
-      test: './scripts/test.js',
+      app: "./scripts/chunks/app.js",
+      vendor: "./scripts/chunks/vendor.js",
+      index: "./scripts/chunks/index.js",
     },
 
     output: {
