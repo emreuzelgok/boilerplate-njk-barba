@@ -5,7 +5,9 @@
   "scripts": {
     "build": "webpack",
     "build:prod": "webpack --env.production",
-    "dev": "webpack --watch",
+    "dev": "npm run watch",
+    "start": "npm run start",
+    "commit": "npx git-cz",
     "pretest": "eslint --ignore-path .gitignore .",
     "watch": "webpack --watch",
     "watch:prod": "webpack --watch --env.production"
