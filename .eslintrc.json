@@ -28,16 +28,17 @@
     },
     "settings": {
         "import/resolver": {
-            "alias": [
-                [
-                    "~",
-                    "./scripts/"
+            "alias": {
+                "map": [
+                    [
+                        "@",
+                        "./scripts"
+                    ]
                 ],
-                [
-                    "@",
-                    "./"
+                "extensions": [
+                    ".js"
                 ]
-            ]
+            }
         }
     }
 }

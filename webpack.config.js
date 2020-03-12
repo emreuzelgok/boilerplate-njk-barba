@@ -1,36 +1,32 @@
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
-const {
-  CleanWebpackPlugin,
-} = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const NunjucksWebpackPlugin = require('nunjucks-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
 const path = require('path')
-const pages = require('./scripts/utils/build')
+const helper = require('./scripts/utils/build')
+const PORT = 3000
 
 module.exports = (env) => {
   const devMode = !env || !env.production
 
-  return {
+  const webpackConfig = smp.wrap({
     mode: devMode ? 'development' : 'production',
 
-    // Does this actually work?
     resolve: {
-      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+      extensions: ['.js', '.jsx', '.json'],
       alias: {
-        '~': path.resolve(__dirname, 'src/scripts/'),
+        '@': path.join(__dirname, 'scripts'),
       },
     },
 
-    // Can I automate chunks output?
     entry: {
       style: './style.scss',
-      app: "./scripts/chunks/app.js",
-      vendor: "./scripts/chunks/vendor.js",
-      index: "./scripts/chunks/index.js",
+      ...helper.getEntries('./scripts/chunks')
     },
 
     output: {
@@ -42,10 +38,10 @@ module.exports = (env) => {
       rules: [{
         test: /\.(sa|sc|c)ss$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader, 
           'css-loader',
           'postcss-loader',
-          'sass-loader',
+          'sass-loader'
         ],
       },
 
@@ -90,15 +86,15 @@ module.exports = (env) => {
     },
     devtool: 'source-map',
     plugins: [
-      ...pages.generate(path.resolve(__dirname, './templates/pages')),
+      ...helper.getPages(path.resolve(__dirname, './templates/pages')),
 
       new MiniCssExtractPlugin({
-        filename: '[name].css',
+        filename: '[name].css', // does i need this?
       }),
 
       new BrowserSyncPlugin({
         host: 'localhost',
-        port: 3000,
+        port: PORT,
         server: {
           baseDir: ['dist'],
         },
@@ -137,5 +133,6 @@ module.exports = (env) => {
         }),
       ],
     },
-  }
+  })
+  return webpackConfig
 }

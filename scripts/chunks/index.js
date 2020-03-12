@@ -1,1 +1,3 @@
-console.log('Home.js')
+import helloWorld from '@/modules/module'
+
+helloWorld()

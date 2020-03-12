@@ -20,19 +20,27 @@ function walkDir(dir, parrent = '') {
     return directories
 }
 
-const pages = {
-    generate: function generatePages(pagesPath) {
-        return walkDir(pagesPath).map(
+const helper = {
+    getPages: (path) => {
+        return walkDir(path).map(
             name =>
                 new NunjucksWebpackPlugin({
                     templates: [{
-                        from: `${pagesPath}/${name[1]}${name[0]}.njk`,
+                        from: `${path}/${name[1]}${name[0]}.njk`,
                         to: `${name[1]}${name[0]}.html`
                     }]
                 }),
         );
+    },
+    getEntries: (dir) => {
+        let entry = {}
+        fs.readdirSync(dir)
+            .forEach(file => {
+                const name = file.split('.js')[0]
+                entry[name] = `${dir}/${name}.js`
+            })
+        return entry
     }
 };
 
-
-module.exports = pages
+module.exports = helper
