@@ -1,9 +1,3 @@
-#### 0.2.2 (2020-03-12)
-
-##### Tests
-
-*  testing changelog and patching (2c3bcb96)
-
 #### 0.2.1 (2020-03-12)
 
 ##### Build System / Dependencies
