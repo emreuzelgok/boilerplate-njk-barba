@@ -1,3 +1,9 @@
+#### 0.2.1 (2020-03-12)
+
+##### Build System / Dependencies
+
+* **webpack:**  build process enhancements (023742ba)
+
 ### 0.1.0 (2020-03-05)
 
 ##### Build System / Dependencies
