@@ -1,3 +1,13 @@
+#### 0.2.2 (2020-03-12)
+
+##### Build System / Dependencies
+
+* **npm:**  add \" characters for the git commit -m commands (886d9585)
+
+##### Tests
+
+*  testing changelog and patching (2c3bcb96)
+
 #### 0.2.1 (2020-03-12)
 
 ##### Build System / Dependencies
