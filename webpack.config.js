@@ -5,10 +5,12 @@ const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-const smp = new SpeedMeasurePlugin();
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
+
+const smp = new SpeedMeasurePlugin()
 const path = require('path')
 const helper = require('./scripts/utils/build')
+
 const PORT = 3000
 
 module.exports = (env) => {
@@ -26,7 +28,7 @@ module.exports = (env) => {
 
     entry: {
       style: './style.scss',
-      ...helper.getEntries('./scripts/chunks')
+      ...helper.getEntries('./scripts/chunks'),
     },
 
     output: {
@@ -38,10 +40,10 @@ module.exports = (env) => {
       rules: [{
         test: /\.(sa|sc|c)ss$/,
         use: [
-          MiniCssExtractPlugin.loader, 
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          'sass-loader'
+          'sass-loader',
         ],
       },
 
@@ -75,7 +77,7 @@ module.exports = (env) => {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            outputPath: 'fonts/',
+            outputPath: 'assets/fonts/',
           },
         }],
       },
